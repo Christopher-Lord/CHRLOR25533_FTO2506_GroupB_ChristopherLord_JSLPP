@@ -3,7 +3,6 @@
  * Handles the display and closing of modals
  */
 
-
 //Input Variables
 export const taskTitle = document.getElementById("task-title");
 export const taskDescription = document.getElementById("task-description");
@@ -13,10 +12,13 @@ export const taskStatus = document.getElementById("task-status");
 const taskModal = document.getElementById("task-modal-container");
 export const newTaskModal = document.getElementById("add-task-modal-container");
 export const newTaskForm = document.getElementById("add-task-form");
+export const deleteConfirmModal = document.getElementById("delete-confirm-content");
 
 // Error Messages
 export const titleErrorMsg = document.getElementById("title-error-msg");
-export const descriptionErrorMsg = document.getElementById("description-error-msg");
+export const descriptionErrorMsg = document.getElementById(
+  "description-error-msg",
+);
 
 // Empty Variable for storing the currently selected task
 export let selectedTask;
@@ -48,4 +50,8 @@ export function closeModals() {
 
   titleErrorMsg.classList.remove("visible");
   descriptionErrorMsg.classList.remove("visible");
+}
+
+export function displayConfirmModal() {
+  deleteConfirmModal.classList.add("visible")
 }
