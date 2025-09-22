@@ -5,9 +5,9 @@
 
 
 //Input Variables
-const taskTitle = document.getElementById("task-title");
-const taskDescription = document.getElementById("task-description");
-const taskStatus = document.getElementById("task-status");
+export const taskTitle = document.getElementById("task-title");
+export const taskDescription = document.getElementById("task-description");
+export const taskStatus = document.getElementById("task-status");
 
 // Modal Variables
 const taskModal = document.getElementById("task-modal-container");
