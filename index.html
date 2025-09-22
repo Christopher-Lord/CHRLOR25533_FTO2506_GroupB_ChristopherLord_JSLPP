@@ -1,0 +1,193 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-clear.svg"
+    />
+    <title>Kanban Task Management</title>
+    <script src="./scripts/scripts.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
+    <nav class="side-bar" id="side-bar-div">
+      <div id="side-logo-div">
+        <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
+      </div>
+
+      <div class="boards-nav-links-div" id="boards-nav-links-div">
+        <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
+        <button class="board-btn">Launch Career</button>
+      </div>
+    </nav>
+
+    <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
+    <div id="layout">
+      <header id="header" class="sticky-header">
+        <div class="header-name-div">
+          <img
+            src="./assets/favicon.svg"
+            alt="logo-mobile"
+            class="logo-mobile"
+          />
+          <h2 class="header-board-name" id="header-board-name">
+            Launch Career
+          </h2>
+        </div>
+        <button class="add-task-btn" id="add-task-btn">
+          <span class="add-task-plus">&plus;</span
+          ><span class="add-task-text"> Add New Task</span>
+        </button>
+      </header>
+
+      <div class="container">
+        <main class="card-column-main">
+          <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
+          <div class="column-div" data-status="todo">
+            <div id="todo-head-div" class="column-head-div">
+              <span class="dot" id="todo-dot"></span>
+              <h4 id="toDoText" class="columnHeader">TODO (4)</h4>
+            </div>
+            <!-- Tasks container for TODO -->
+            <div class="tasks-container" id="todo-tasks-container"></div>
+          </div>
+          <!-- DOING Column -->
+          <div class="column-div" data-status="doing">
+            <div id="doing-head-div" class="column-head-div">
+              <span class="dot" id="doing-dot"></span>
+              <h4 id="doingText" class="columnHeader">DOING (2)</h4>
+            </div>
+            <!-- Tasks container for DOING -->
+            <div class="tasks-container" id="doing-tasks-container"></div>
+          </div>
+          <!-- DONE Column -->
+          <div class="column-div" data-status="done">
+            <div id="done-head-div" class="column-head-div">
+              <span class="dot" id="done-dot"></span>
+              <h4 id="doneText" class="columnHeader">DONE (2)</h4>
+            </div>
+            <!-- Tasks container for DONE -->
+            <div class="tasks-container" id="done-tasks-container"></div>
+          </div>
+        </main>
+
+        <!-- Edit Task Modal and form elements -->
+        <section id="task-modal-container" class="task-modal-container">
+          <div class="task-modal-content">
+            <span class="task-modal-close-btn" id="task-modal-close"
+              >&times;</span
+            >
+            <h2>Task</h2>
+
+            <form action="" class="task-modal-form">
+              <label for="task-title">Title</label>
+              <textarea
+                type="text"
+                id="task-title"
+                class="task-title-input"
+                name="task-title"
+                required
+              ></textarea>
+
+              <label for="task-description">Description</label>
+              <textarea
+                type="text"
+                id="task-description"
+                class="task-description-input"
+                name="task-description"
+                required
+              ></textarea>
+
+              <label for="task-status">Status</label>
+              <select
+                name="task-status"
+                id="task-status"
+                class="task-status-input"
+              >
+                <option value="todo">todo</option>
+                <option value="doing">doing</option>
+                <option value="done">done</option>
+              </select>
+              <div class="task-btn-container">
+                <button
+                  id="save-changes-btn"
+                  class="save-changes-btn"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+                <button
+                  id="delete-task-btn"
+                  class="delete-task-btn"
+                  type="button"
+                >
+                  Delete Task
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Add New Task Modal -->
+        <section id="add-task-modal-container" class="task-modal-container">
+          <div class="task-modal-content">
+            <span class="task-modal-close-btn" id="add-task-modal-close"
+              >&times;</span
+            >
+            <h2>Add New Task</h2>
+
+            <form action="" class="task-modal-form" id="add-task-form">
+              <label for="task-title">Title</label>
+              <textarea
+                type="text"
+                id="add-task-title"
+                class="task-title-input"
+                name="task-title"
+                placeholder="e.g. Get cracking on JSLPP"
+              ></textarea>
+
+              <label for="task-description">Description</label>
+              <textarea
+                type="text"
+                id="add-task-description"
+                class="task-description-input"
+                name="task-description"
+                placeholder="e.g. Start with some of the coding"
+              ></textarea>
+
+              <label for="task-status">Status</label>
+              <select
+                name="task-status"
+                id="add-task-status"
+                class="task-status-input"
+              >
+                <option value="todo">todo</option>
+                <option value="doing">doing</option>
+                <option value="done">done</option>
+              </select>
+              <input
+                type="submit"
+                value="Create Task"
+                class="create-task-btn"
+                id="create-task-btn"
+              />
+            </form>
+            <p id="title-error-msg" class="title-error"></p>
+            <p id="description-error-msg" class="description-error"></p>
+          </div>
+        </section>
+        <!-- End of Add Task Modal -->
+      </div>
+    </div>
+  </body>
+</html>
