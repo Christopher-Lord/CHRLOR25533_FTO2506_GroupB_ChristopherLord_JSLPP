@@ -1,0 +1,610 @@
+/* ========================
+   Global & Root Variables
+======================== */
+* {
+  box-sizing: border-box; /* Ensures padding and border are included in total element size */
+}
+
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #f4f7fd;
+  --primary-font-color: #000000;
+  --secondary-font-color: #828fa3;
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
+  --sidebar-width: 300px; /* Sidebar fixed width */
+}
+
+/* ================
+   Base Elements
+================ */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex; /* Allow layout to span horizontally */
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--secondary-color);
+  font-size: 1rem; /* Base font size for rem scaling */
+}
+
+/* ================
+   Modal Styling
+================ */
+.task-modal-container {
+  display: none;
+  position: fixed;
+
+  z-index: 1;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+}
+
+.task-modal-content {
+  background-color: var(--primary-color);
+
+  margin: 15% auto;
+  padding: 1.5rem;
+  border-radius: 0.375rem;
+
+  max-width: 31.25rem;
+  width: 90%;
+
+  position: relative;
+}
+
+.task-modal-content h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+
+  margin-bottom: 1.5rem;
+}
+
+.task-modal-close-btn {
+  color: #ea5555;
+  font-size: 1.875rem;
+  font-weight: bold;
+
+  position: absolute;
+  top: 0.25rem;
+  right: 1.1875rem;
+}
+
+.task-modal-close-btn:hover {
+  cursor: pointer;
+  color: #cf3a3a;
+}
+
+label {
+  color: var(--secondary-font-color);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  margin-bottom: 0.5rem;
+}
+
+.task-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-title-input {
+  resize: none;
+
+  align-content: center;
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: inherit;
+
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  min-height: 2.5rem;
+
+  border: 1px solid #828fa340;
+  border-radius: 0.25rem;
+}
+
+.task-description-input {
+  resize: none;
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: inherit;
+
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  min-height: 7rem;
+
+  border: 1px solid #828fa340;
+  border-radius: 0.25rem;
+}
+
+.task-title-input:focus,
+.task-description-input:focus {
+  outline-color: var(--secondary-font-color);
+}
+
+.task-title-input::placeholder,
+.task-description-input::placeholder {
+  color: #00000050;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: inherit;
+
+  padding: 0.625rem;
+
+  min-height: 2.5rem;
+
+  border: 1px solid #828fa340;
+  border-radius: 4px;
+}
+
+#add-task-form select {
+  margin-bottom: 1.5rem;
+}
+
+select::picker-icon {
+  color: var(--secondary-font-color);
+}
+
+::picker(select) {
+  border: none;
+  border-radius: 0.5rem;
+
+  box-shadow: var(--primary-box-shadow);
+
+  top: calc(anchor(top) + 40px);
+}
+
+option {
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+option:not(option:checked) {
+  color: var(--secondary-font-color);
+}
+
+option::checkmark {
+  display: none;
+}
+
+select:hover,
+option:hover {
+  background: var(--secondary-color);
+}
+
+.create-task-btn {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4375rem;
+  color: #fff;
+
+  background: #635fc7;
+
+  border: none;
+  border-radius: 1.25rem;
+
+  padding: 0.5625rem;
+}
+
+.create-task-btn:hover {
+  cursor: pointer;
+  background: #4a48c2;
+}
+
+.task-btn-container {
+  margin-top: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-changes-btn,
+.delete-task-btn {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4375rem;
+
+  color: #fff;
+
+  border: none;
+  border-radius: 1.25rem;
+}
+
+.save-changes-btn {
+  background: #635fc7;
+
+  padding: 0.625rem 3.5rem;
+}
+
+.delete-task-btn {
+  background: #ea5555;
+
+  padding: 0.625rem 4.0313rem;
+}
+
+.save-changes-btn:hover {
+  cursor: pointer;
+
+  background-color: #4a48c2;
+}
+
+.delete-task-btn:hover {
+  cursor: pointer;
+
+  background-color: #e64141;
+}
+
+.title-error,
+.description-error {
+  display: none;
+  position: absolute;
+
+  background: var(--primary-color);
+  color: var(--secondary-font-color);
+
+  font-size: 0.8125rem;
+  font-family: inherit;
+  font-weight: 500;
+
+  padding: 1rem 1.125rem;
+  border-radius: 0.5rem;
+
+  box-shadow: 0 10px 20px #364e7e40;
+}
+
+.title-error {
+  top: 8.25rem;
+  left: 6.25rem;
+}
+
+.description-error {
+  top: 18.125rem;
+  left: 6.25rem;
+}
+
+.visible {
+  display: block;
+}
+
+/* ================
+   Sidebar Layout
+================ */
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color);
+  border-right: 1px solid #e4ebfa; /* Light divider */
+  width: var(--sidebar-width);
+  height: 100vh;
+}
+
+#side-logo-div {
+  margin: 33px 113px 54px 34px; /* Spacing around logo */
+  display: flex;
+  justify-content: flex-start;
+}
+
+#logo {
+  width: 100%; /* Make logo responsive within container */
+}
+
+.boards-nav-links-div {
+  display: flex;
+  flex-direction: column;
+  color: var(--primary-font-color);
+}
+
+#headline-sidepanel {
+  padding: 0 12px 0 50px; /* Aligns section content from left and right */
+}
+
+h4 {
+  color: var(--secondary-font-color);
+  font-size: 0.75rem;
+  letter-spacing: 0.125rem; /* Makes heading more spaced */
+}
+
+.board-btn {
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  background-color: #635fc7;
+  color: #fff;
+  border: none;
+  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  height: 48px;
+  width: 276px;
+  padding: 28px 12px 28px 50px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden; /* Prevents overflowed text/icons from showing */
+}
+
+/* ===============
+   Main Layout
+================ */
+#layout {
+  flex: 1; /* Fills remaining space beside sidebar */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100%;
+}
+
+/* ===============
+   Header Section
+================ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+  height: 96px;
+  padding: 0 35px 0 30px;
+  border-bottom: 1px solid #e4ebfa;
+  width: 100%;
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+.header-name-div {
+  display: flex;
+  align-items: center;
+}
+
+.logo-mobile {
+  display: none; /* Hidden on desktop; shown on smaller screens */
+}
+
+.add-task-btn {
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  background: #635fc7;
+
+  padding: 0.9375rem 1.5625rem;
+  margin-right: 0.625rem;
+
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.add-task-btn:hover {
+  cursor: pointer;
+  background: #4a48c2;
+}
+
+/* ===============
+   Board Columns
+================ */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 35px;
+  box-sizing: border-box;
+}
+
+.card-column-main {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 304px)
+  ); /* 3 columns with min size */
+  gap: 8px; /* Space between columns */
+}
+
+.column-div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 12px;
+}
+
+.column-head-div {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between dot and column title */
+}
+
+.columnHeader {
+  font-size: 0.75rem;
+  letter-spacing: 0.125rem;
+  color: var(--secondary-font-color);
+  margin: 0;
+}
+
+/* Status Dots */
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%; /* Make it circular */
+  display: inline-block;
+}
+
+#todo-dot {
+  background-color: #49c4e5;
+}
+
+#doing-dot {
+  background-color: #8471f2;
+}
+
+#done-dot {
+  background-color: #219c90;
+}
+
+/* ===============
+   Task Cards
+================ */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-div {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  width: 100%;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+  border-radius: 12px;
+  box-shadow: var(--primary-box-shadow);
+  cursor: pointer; /* Indicate it's clickable */
+  margin-bottom: 20px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+}
+
+/* ===============
+   Headings
+================ */
+h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* ========================
+   Responsive Styles
+======================== */
+
+/******** Tablets ********/
+@media screen and (max-width: 1023px) {
+  .side-bar {
+    display: none; /* Hide sidebar on tablets and smaller */
+  }
+
+  .side-bar.show-sidebar {
+    display: flex !important;
+    position: fixed; /* Overlay on top of page */
+    height: auto;
+  }
+
+  #side-logo-div {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  body {
+    font-size: 0.8rem;
+  }
+
+  .board-btn {
+    font-size: 0.8rem;
+    padding-left: 15px;
+    margin-right: 15px;
+    font-weight: 700;
+  }
+
+  .container {
+    padding: 0;
+    width: 100%;
+    align-items: center; /* Center columns on smaller screens */
+  }
+
+  .card-column-main {
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 8px;
+  }
+
+  header {
+    height: 64px;
+    padding: 0 10px 0 18px;
+    border: none;
+  }
+
+  #header-board-name {
+    font-size: 1rem;
+  }
+
+  .task-div {
+    width: 100%;
+  }
+
+  .columnHeader {
+    font-size: 0.75rem;
+  }
+
+  .dot {
+    height: 8px;
+    width: 8px;
+  }
+
+  .column-head-div {
+    gap: 8px;
+  }
+
+  .column-div {
+    width: 100%;
+  }
+
+  .add-task-btn {
+    padding: 0.625rem 1.25rem;
+
+    font-size: 0.8rem;
+  }
+}
+
+/******** Mobile ********/
+@media screen and (max-width: 576px) {
+  .card-column-main {
+    grid-template-columns: minmax(
+      0,
+      380px
+    ); /* Stack columns in single column */
+  }
+
+  .column-div {
+    padding: 24px;
+  }
+
+  .task-modal-content {
+    margin: 25% auto;
+  }
+
+  .add-task-btn {
+    padding: 5px 11.7px 9px 11.7px;
+
+    font-size: 0.9375rem;
+  }
+
+  .add-task-btn .add-task-text {
+    display: none;
+  }
+
+  .task-btn-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
