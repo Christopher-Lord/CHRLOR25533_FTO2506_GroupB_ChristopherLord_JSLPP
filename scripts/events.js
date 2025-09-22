@@ -11,6 +11,9 @@ import {
   newTaskForm,
   titleErrorMsg,
   descriptionErrorMsg,
+  taskTitle,
+  taskDescription,
+  taskStatus,
 } from "./modals.js";
 import {
   getNewTask,
@@ -19,12 +22,14 @@ import {
   titleInput,
   descriptionInput,
   addTask,
+  editTask,
 } from "./tasks.js";
 import { saveTasksToStorage } from "./storage.js";
 
 // Button variables
 const newTaskBtn = document.getElementById("add-task-btn");
 const deleteTaskBtn = document.getElementById("delete-task-btn");
+const editTaskBtn = document.getElementById("save-changes-btn");
 const modalCloseBtn = document.querySelectorAll(".task-modal-close-btn");
 
 // Opens the Add New Task modal
@@ -75,7 +80,16 @@ descriptionInput.addEventListener("input", () => {
 // Deletes the currently selected task, saves the tasks to storage, then re-renders all tasks
 deleteTaskBtn.addEventListener("click", function () {
   deleteTask(selectedTask);
-  saveTasksToStorage();
+  renderTasks();
+  closeModals();
+});
+
+editTaskBtn.addEventListener("click", function () {
+  selectedTask.title = taskTitle.value;
+  selectedTask.description = taskDescription.value;
+  selectedTask.status = taskStatus.value;
+
+  editTask(selectedTask);
   renderTasks();
   closeModals();
 });
