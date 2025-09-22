@@ -100,11 +100,19 @@ export function deleteTask(task) {
   saveTasksToStorage();
 }
 
+export function editTask(task) {
+  const indexToEdit = allTasks.indexOf(task)
+
+  allTasks.splice(indexToEdit, 1, task)
+  assignTasks(task);
+  saveTasksToStorage()
+}
+
 /**
  * Retrieves all tasks from storage, clears existing tasks, then displays the tasks on the web page
  */
-export function renderTasks() {
-  const tasks = retrieveTasksFromStorage();
+export async function renderTasks() {
+  const tasks = await retrieveTasksFromStorage();
   clearExistingTasks();
   tasks.forEach(assignTasks);
 }
