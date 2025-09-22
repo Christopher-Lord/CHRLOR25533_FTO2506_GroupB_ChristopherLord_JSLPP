@@ -1,46 +1,22 @@
-// Initial tasks array
-export const initialTasks = [
-  {
-    id: 1,
-    title: "Launch Epic Career 🚀",
-    description: "Create a killer Resume",
-    status: "todo",
-  },
-  {
-    id: 2,
-    title: "Master JavaScript 💛",
-    description: "Get comfortable with the fundamentals",
-    status: "doing",
-  },
-  {
-    id: 3,
-    title: "Keep on Going 🏆",
-    description: "You're almost there",
-    status: "doing",
-  },
+const API_URL = "https://jsl-kanban-api.vercel.app/";
 
-  {
-    id: 4,
-    title: "Learn Data Structures and Algorithms 📚",
-    description:
-      "Study fundamental data structures and algorithms to solve coding problems efficiently",
-    status: "todo",
-  },
-  {
-    id: 5,
-    title: "Contribute to Open Source Projects 🌐",
-    description:
-      "Gain practical experience and collaborate with others in the software development community",
-    status: "done",
-  },
-  {
-    id: 6,
-    title: "Build Portfolio Projects 🛠️",
-    description:
-      "Create a portfolio showcasing your skills and projects to potential employers",
-    status: "done",
-  },
-];
+export async function fetchInitialData() {
+  // Empty initial tasks array
+  let initialTasks;
+
+  if (initialTasks) {
+    return initialTasks;
+  }
+
+  try {
+    const response = await fetch(API_URL);
+    initialTasks = await response.json();
+    return initialTasks;
+  } catch (error) {
+    console.error("API Error:", error);
+    throw error;
+  }
+}
 
 // Empty array for holding all of the stored tasks
 export const allTasks = [];
