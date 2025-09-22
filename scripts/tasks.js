@@ -15,6 +15,8 @@ export const titleInput = document.getElementById("add-task-title");
 export const descriptionInput = document.getElementById("add-task-description");
 export const statusInput = document.getElementById("add-task-status");
 
+const loadingMsg = document.getElementById("loading-container");
+
 /**
  * Gets the correct container for each task by status
  * @param {string} status - The status value of each task
@@ -101,18 +103,31 @@ export function deleteTask(task) {
 }
 
 export function editTask(task) {
-  const indexToEdit = allTasks.indexOf(task)
+  const indexToEdit = allTasks.indexOf(task);
 
-  allTasks.splice(indexToEdit, 1, task)
+  allTasks.splice(indexToEdit, 1, task);
   assignTasks(task);
-  saveTasksToStorage()
+  saveTasksToStorage();
+}
+
+export function showLoadMsg() {
+  loadingMsg.classList.add("visible");
 }
 
 /**
  * Retrieves all tasks from storage, clears existing tasks, then displays the tasks on the web page
  */
 export async function renderTasks() {
-  const tasks = await retrieveTasksFromStorage();
-  clearExistingTasks();
-  tasks.forEach(assignTasks);
+  showLoadMsg();
+
+  try {
+    const tasks = await retrieveTasksFromStorage();
+    loadingMsg.classList.remove("visible");
+
+    clearExistingTasks();
+    tasks.forEach(assignTasks);
+  } catch (error) {
+    const loadingMsgText = document.getElementById("loading-msg");
+    loadingMsgText.innerHTML = `Error Loading Tasks 🚩\n${error}`;
+  }
 }
