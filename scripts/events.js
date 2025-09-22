@@ -14,6 +14,8 @@ import {
   taskTitle,
   taskDescription,
   taskStatus,
+  displayConfirmModal,
+  deleteConfirmModal,
 } from "./modals.js";
 import {
   getNewTask,
@@ -24,13 +26,14 @@ import {
   addTask,
   editTask,
 } from "./tasks.js";
-import { saveTasksToStorage } from "./storage.js";
 
 // Button variables
 const newTaskBtn = document.getElementById("add-task-btn");
 const deleteTaskBtn = document.getElementById("delete-task-btn");
 const editTaskBtn = document.getElementById("save-changes-btn");
 const modalCloseBtn = document.querySelectorAll(".task-modal-close-btn");
+const deleteConfirmBtn = document.getElementById("confirm-btn");
+const deleteCancelBtn = document.getElementById("cancel-btn");
 
 // Opens the Add New Task modal
 newTaskBtn.addEventListener("click", function () {
@@ -79,6 +82,14 @@ descriptionInput.addEventListener("input", () => {
 
 // Deletes the currently selected task, saves the tasks to storage, then re-renders all tasks
 deleteTaskBtn.addEventListener("click", function () {
+  displayConfirmModal();
+});
+
+deleteCancelBtn.addEventListener("click", function () {
+  deleteConfirmModal.classList.remove("visible");
+});
+
+deleteConfirmBtn.addEventListener("click", function () {
   deleteTask(selectedTask);
   renderTasks();
   closeModals();
