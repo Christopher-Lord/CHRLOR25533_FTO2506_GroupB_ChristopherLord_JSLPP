@@ -403,6 +403,55 @@ h4 {
   overflow: hidden; /* Prevents overflowed text/icons from showing */
 }
 
+.sidebar-container {
+  display: flex;
+  align-items: end;
+
+  padding-bottom: 1rem;
+
+  height: 100%;
+}
+
+.board-hide-btn {
+  position: relative;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: #635fc7;
+  border: none;
+  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  height: 48px;
+  width: 276px;
+  padding: 28px 12px 28px 50px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden; /* Prevents overflowed text/icons from showing */
+}
+
+.board-hide-btn img {
+  position: absolute;
+  left: 1.5rem;
+}
+
+.board-hide-btn span {
+  transform: translateX(2.5rem);
+}
+
+.board-show-btn {
+  display: none;
+  position: absolute;
+  top: 169%;
+  left: 0;
+  font-size: 1.5rem;
+  background-color: #A8A4FF;
+  border: none;
+  border-radius: 0 6.25rem 6.25rem 0;
+  padding: .75rem .75rem .75rem .5rem;
+  cursor: pointer;
+}
+
 /* ===============
    Main Layout
 ================ */
@@ -557,6 +606,10 @@ header {
 
 .visible {
   display: block;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ===============
