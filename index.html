@@ -29,6 +29,17 @@
         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
         <button class="board-btn">Launch Career</button>
       </div>
+      <div class="sidebar-container">
+        <!-- <label for="mode-switch" class="mode-switch-label">
+          <input type="checkbox" name="mode-switch" id="mode-switch">
+          <span class="slider-round"></span>
+        </label> -->
+        <button class="board-hide-btn" id="board-hide-btn">
+          <img src="./assets/prohibited-icon.png" alt="prohibited icon" /><span
+            >Hide Sidebar</span
+          >
+        </button>
+      </div>
     </nav>
 
     <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
@@ -55,6 +66,9 @@
           <p class="loading-msg" id="loading-msg">
             Loading Tasks... <span class="loading-spin">⚙️</span>
           </p>
+        </div>
+        <div>
+          <button class="board-show-btn" id="board-show-btn">👀</button>
         </div>
         <main class="card-column-main">
           <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
