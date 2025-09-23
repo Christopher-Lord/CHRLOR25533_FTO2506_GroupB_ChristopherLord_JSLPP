@@ -30,10 +30,18 @@
         <button class="board-btn">Launch Career</button>
       </div>
       <div class="sidebar-container">
-        <!-- <label for="mode-switch" class="mode-switch-label">
-          <input type="checkbox" name="mode-switch" id="mode-switch">
-          <span class="slider-round"></span>
-        </label> -->
+        <div class="mode-switch-container">
+          <p>☀️</p>
+          <input
+            type="checkbox"
+            name="mode-toggle"
+            id="mode-toggle"
+            class="mode-toggle"
+            role="switch"
+          />
+          <label for="mode-toggle" class="mode-toggle-label">Mode Toggle</label>
+          <p>🌑</p>
+        </div>
         <button class="board-hide-btn" id="board-hide-btn">
           <img src="./assets/prohibited-icon.png" alt="prohibited icon" /><span
             >Hide Sidebar</span
@@ -50,6 +58,7 @@
             src="./assets/favicon.svg"
             alt="logo-mobile"
             class="logo-mobile"
+            id="logo-mobile"
           />
           <h2 class="header-board-name" id="header-board-name">
             Launch Career
