@@ -129,5 +129,6 @@ export async function renderTasks() {
   } catch (error) {
     const loadingMsgText = document.getElementById("loading-msg");
     loadingMsgText.innerHTML = `Error Loading Tasks 🚩\n${error}`;
+    console.error(`Error Loading Tasks 🚩\n${error}`);
   }
 }
