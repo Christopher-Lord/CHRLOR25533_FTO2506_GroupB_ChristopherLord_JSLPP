@@ -34,6 +34,13 @@ const editTaskBtn = document.getElementById("save-changes-btn");
 const modalCloseBtn = document.querySelectorAll(".task-modal-close-btn");
 const deleteConfirmBtn = document.getElementById("confirm-btn");
 const deleteCancelBtn = document.getElementById("cancel-btn");
+const hideSidebarBtn = document.getElementById("board-hide-btn");
+const showSidebarBtn = document.getElementById("board-show-btn");
+const modeToggleBtn = document.getElementById("mode-toggle");
+
+const sidebarDiv = document.getElementById("side-bar-div");
+const kanbanLogo = document.getElementById("logo");
+const mobileLogo = document.getElementById("logo-mobile");
 
 // Opens the Add New Task modal
 newTaskBtn.addEventListener("click", function () {
@@ -103,4 +110,27 @@ editTaskBtn.addEventListener("click", function () {
   editTask(selectedTask);
   renderTasks();
   closeModals();
+});
+
+hideSidebarBtn.addEventListener("click", function () {
+  sidebarDiv.classList.add("hidden");
+  showSidebarBtn.classList.add("visible");
+});
+
+showSidebarBtn.addEventListener("click", function () {
+  sidebarDiv.classList.remove("hidden");
+  showSidebarBtn.classList.remove("visible");
+});
+
+modeToggleBtn.addEventListener("click", function () {
+  const html = document.documentElement;
+  html.classList.toggle("dark-mode");
+
+  if (html.classList.contains("dark-mode")) {
+    kanbanLogo.setAttribute("src", "./assets/logo-dark.svg");
+    mobileLogo.setAttribute("src", "./assets/favicon-clear.svg");
+  } else {
+    kanbanLogo.setAttribute("src", "./assets/logo-light.svg");
+    mobileLogo.setAttribute("src", "./assets/favicon.svg");
+  }
 });
