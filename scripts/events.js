@@ -16,6 +16,7 @@ import {
   taskStatus,
   displayConfirmModal,
   deleteConfirmModal,
+  displayMobileSidebar,
 } from "./modals.js";
 import {
   getNewTask,
@@ -31,7 +32,7 @@ import {
 const newTaskBtn = document.getElementById("add-task-btn");
 const deleteTaskBtn = document.getElementById("delete-task-btn");
 const editTaskBtn = document.getElementById("save-changes-btn");
-const modalCloseBtn = document.querySelectorAll(".task-modal-close-btn");
+const modalCloseBtn = document.querySelectorAll(".modal-close-btn");
 const deleteConfirmBtn = document.getElementById("confirm-btn");
 const deleteCancelBtn = document.getElementById("cancel-btn");
 const hideSidebarBtn = document.getElementById("board-hide-btn");
@@ -133,4 +134,8 @@ modeToggleBtn.addEventListener("click", function () {
     kanbanLogo.setAttribute("src", "./assets/logo-light.svg");
     mobileLogo.setAttribute("src", "./assets/favicon.svg");
   }
+});
+
+mobileLogo.addEventListener("click", function () {
+  displayMobileSidebar();
 });
