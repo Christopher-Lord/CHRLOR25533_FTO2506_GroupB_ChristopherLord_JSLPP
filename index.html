@@ -20,12 +20,14 @@
 
   <body>
     <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
+    <div class="side-bar-backdrop" id="side-bar-backdrop"></div>
     <nav class="side-bar" id="side-bar-div">
       <div id="side-logo-div">
         <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
       </div>
 
       <div class="boards-nav-links-div" id="boards-nav-links-div">
+        <span class="modal-close-btn">&times;</span>
         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
         <button class="board-btn">Launch Career</button>
       </div>
@@ -43,9 +45,10 @@
           <p>🌑</p>
         </div>
         <button class="board-hide-btn" id="board-hide-btn">
-          <img src="./assets/icon-hide-sidebar.png" alt="prohibited icon" /><span
-            >Hide Sidebar</span
-          >
+          <img
+            src="./assets/icon-hide-sidebar.png"
+            alt="prohibited icon"
+          /><span>Hide Sidebar</span>
         </button>
       </div>
     </nav>
@@ -112,9 +115,7 @@
         <!-- Edit Task Modal and form elements -->
         <section id="task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
-            <span class="task-modal-close-btn" id="task-modal-close"
-              >&times;</span
-            >
+            <span class="modal-close-btn" id="task-modal-close">&times;</span>
             <h2>Task</h2>
 
             <form action="" class="task-modal-form">
@@ -178,7 +179,7 @@
         <!-- Add New Task Modal -->
         <section id="add-task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
-            <span class="task-modal-close-btn" id="add-task-modal-close"
+            <span class="modal-close-btn" id="add-task-modal-close"
               >&times;</span
             >
             <h2>Add New Task</h2>
