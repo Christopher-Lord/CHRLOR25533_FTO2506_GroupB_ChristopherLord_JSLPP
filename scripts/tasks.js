@@ -26,6 +26,9 @@ export function getTaskContainerByStatus(status) {
   return document.getElementById(`${status}-tasks-container`);
 }
 
+/**
+ * Updates task counts depending on how many tasks are in each column
+ */
 export function updateTaskCounts() {
   let todoCount = 0;
   let doingCount = 0;
@@ -138,6 +141,10 @@ export function deleteTask(task) {
   updateTaskCounts();
 }
 
+/**
+ * Finds the currently selected task, removes the old version and replaces it with the edited version
+ * @param {Object} task - Selected task object to edit
+ */
 export function editTask(task) {
   const indexToEdit = allTasks.indexOf(task);
 
@@ -147,6 +154,9 @@ export function editTask(task) {
   updateTaskCounts();
 }
 
+/**
+ * Sets the task loading message to visible
+ */
 export function showLoadMsg() {
   loadingMsg.classList.add("visible");
 }
@@ -155,6 +165,7 @@ export function showLoadMsg() {
  * Retrieves all tasks from storage, clears existing tasks, then displays the tasks on the web page
  */
 export async function renderTasks() {
+  // Loading message shows while API data is being fetched
   showLoadMsg();
 
   try {

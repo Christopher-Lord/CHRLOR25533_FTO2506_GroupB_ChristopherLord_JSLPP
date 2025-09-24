@@ -58,10 +58,16 @@ export function closeModals() {
   descriptionErrorMsg.classList.remove("visible");
 }
 
+/**
+ * Sets the delete confirmation modal to visible
+ */
 export function displayConfirmModal() {
   deleteConfirmModal.classList.add("visible");
 }
 
+/**
+ * Sets the mobile sidebar to visible
+ */
 export function displayMobileSidebar() {
   mobileSidebar.classList.add("show-sidebar");
   mobileSidebarBackdrop.classList.add("show-sidebar");

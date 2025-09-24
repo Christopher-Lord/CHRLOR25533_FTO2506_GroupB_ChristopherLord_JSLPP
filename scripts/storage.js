@@ -14,13 +14,13 @@ export function saveTasksToStorage() {
 }
 
 /**
- *  Retrieves tasks from local storage, empties allTasks array and repopulates it with tasks from storage
+ *  Retrieves tasks from local storage and populates allTasks array with tasks from storage
  * @returns allTasks array, populated with data from storage
  */
 export async function retrieveTasksFromStorage() {
   let savedTasks = localStorage.getItem("allTasks");
 
-  // Runs if no tasks are saved in local storage, gets data from initialTasks
+  // Runs if no tasks are saved in local storage, fetches data from API
   if (!savedTasks) {
     const initialData = await fetchInitialData()
     initialData.forEach((task) => {
@@ -30,6 +30,7 @@ export async function retrieveTasksFromStorage() {
     return allTasks;
   }
 
+  // Runs if there are tasks stored
   try {
     let parsedTasks = JSON.parse(savedTasks);
     allTasks.length = 0;

@@ -88,21 +88,24 @@ descriptionInput.addEventListener("input", () => {
   descriptionErrorMsg.classList.remove("visible");
 });
 
-// Deletes the currently selected task, saves the tasks to storage, then re-renders all tasks
+// Clicking the delete button shows the delete confirmation modal
 deleteTaskBtn.addEventListener("click", function () {
   displayConfirmModal();
 });
 
+// Hides the confirmation modal when cancel is clicked
 deleteCancelBtn.addEventListener("click", function () {
   deleteConfirmModal.classList.remove("visible");
 });
 
+// When 'Yes' is clicked, deletes the currently selected task and re-renders all tasks
 deleteConfirmBtn.addEventListener("click", function () {
   deleteTask(selectedTask);
   renderTasks();
   closeModals();
 });
 
+// Saves edited task information when save changes is clicked
 editTaskBtn.addEventListener("click", function () {
   selectedTask.title = taskTitle.value;
   selectedTask.description = taskDescription.value;
@@ -113,16 +116,19 @@ editTaskBtn.addEventListener("click", function () {
   closeModals();
 });
 
+// Event to hide sidebar, and show 'show sidebar' button when clicked
 hideSidebarBtn.addEventListener("click", function () {
   sidebarDiv.classList.add("hidden");
   showSidebarBtn.classList.add("visible");
 });
 
+// Hides 'show sidebar' button and makes the sidebar visible again
 showSidebarBtn.addEventListener("click", function () {
   sidebarDiv.classList.remove("hidden");
   showSidebarBtn.classList.remove("visible");
 });
 
+// Toggles between light/dark mode themes and switches logo images to match theme
 modeToggleBtn.addEventListener("click", function () {
   const html = document.documentElement;
   html.classList.toggle("dark-mode");
@@ -136,6 +142,7 @@ modeToggleBtn.addEventListener("click", function () {
   }
 });
 
+// Shows the mobile sidebar when the logo is clicked in mobile view
 mobileLogo.addEventListener("click", function () {
   displayMobileSidebar();
 });
