@@ -26,6 +26,40 @@ export function getTaskContainerByStatus(status) {
   return document.getElementById(`${status}-tasks-container`);
 }
 
+export function updateTaskCounts() {
+  let todoCount = 0;
+  let doingCount = 0;
+  let doneCount = 0;
+
+  allTasks.forEach((task) => {
+    switch (task.status) {
+      case "todo":
+        todoCount++;
+        break;
+      case "doing":
+        doingCount++;
+        break;
+      case "done":
+        doneCount++;
+        break;
+    }
+  });
+
+  const todoCountElement = document.getElementById("todo-count");
+  const doingCountElement = document.getElementById("doing-count");
+  const doneCountElement = document.getElementById("done-count");
+
+  if (todoCountElement) {
+    todoCountElement.textContent = todoCount;
+  }
+  if (doingCountElement) {
+    doingCountElement.textContent = doingCount;
+  }
+  if (doneCountElement) {
+    doneCountElement.textContent = doneCount;
+  }
+}
+
 /**
  * Clears any existing HTML elements within each task container
  */
@@ -57,6 +91,7 @@ export function getNewTask() {
 export function addTask(task) {
   allTasks.push(task);
   saveTasksToStorage();
+  updateTaskCounts();
 }
 
 /**
@@ -100,6 +135,7 @@ export function deleteTask(task) {
 
   allTasks.splice(indexToRemove, 1);
   saveTasksToStorage();
+  updateTaskCounts();
 }
 
 export function editTask(task) {
@@ -108,6 +144,7 @@ export function editTask(task) {
   allTasks.splice(indexToEdit, 1, task);
   assignTasks(task);
   saveTasksToStorage();
+  updateTaskCounts();
 }
 
 export function showLoadMsg() {
@@ -126,6 +163,8 @@ export async function renderTasks() {
 
     clearExistingTasks();
     tasks.forEach(assignTasks);
+
+    updateTaskCounts();
   } catch (error) {
     const loadingMsgText = document.getElementById("loading-msg");
     loadingMsgText.innerHTML = `Error Loading Tasks 🚩\n${error}`;
