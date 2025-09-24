@@ -12,7 +12,11 @@ export const taskStatus = document.getElementById("task-status");
 const taskModal = document.getElementById("task-modal-container");
 export const newTaskModal = document.getElementById("add-task-modal-container");
 export const newTaskForm = document.getElementById("add-task-form");
-export const deleteConfirmModal = document.getElementById("delete-confirm-container");
+export const deleteConfirmModal = document.getElementById(
+  "delete-confirm-container",
+);
+const mobileSidebar = document.getElementById("side-bar-div");
+const mobileSidebarBackdrop = document.getElementById("side-bar-backdrop");
 
 // Error Messages
 export const titleErrorMsg = document.getElementById("title-error-msg");
@@ -45,6 +49,8 @@ export function displayTaskModal(task) {
 export function closeModals() {
   taskModal.classList.remove("visible");
   newTaskModal.classList.remove("visible");
+  mobileSidebar.classList.remove("show-sidebar");
+  mobileSidebarBackdrop.classList.remove("show-sidebar");
 
   newTaskForm.reset();
 
@@ -53,5 +59,10 @@ export function closeModals() {
 }
 
 export function displayConfirmModal() {
-  deleteConfirmModal.classList.add("visible")
+  deleteConfirmModal.classList.add("visible");
+}
+
+export function displayMobileSidebar() {
+  mobileSidebar.classList.add("show-sidebar");
+  mobileSidebarBackdrop.classList.add("show-sidebar");
 }
