@@ -20,6 +20,7 @@ import {
   taskPriority,
   updateLogos,
   mobileLogo,
+  mobileSidebarBackdrop,
 } from "./modals.js";
 import {
   getNewTask,
@@ -130,11 +131,12 @@ showSidebarBtn.addEventListener("click", function () {
   showSidebarBtn.classList.remove("visible");
 });
 
-// Toggles between light/dark mode themes and switches logo images to match theme
+// Toggles between light/dark mode themes, switches logo images to match theme and saves theme choice to storage
 modeToggleBtn.addEventListener("click", function () {
   const html = document.documentElement;
   html.classList.toggle("dark-mode");
 
+  // Check if html contains the "dark-mode" class
   const isDarkMode = html.classList.contains("dark-mode");
 
   updateLogos(isDarkMode);
@@ -149,4 +151,11 @@ modeToggleBtn.addEventListener("click", function () {
 // Shows the mobile sidebar when the logo is clicked in mobile view
 mobileLogo.addEventListener("click", function () {
   displayMobileSidebar();
+});
+
+// Event listener to close the mobile sidebar when clicking out of it
+document.addEventListener("click", function (event) {
+  if (event.target === mobileSidebarBackdrop) {
+    closeModals();
+  }
 });
