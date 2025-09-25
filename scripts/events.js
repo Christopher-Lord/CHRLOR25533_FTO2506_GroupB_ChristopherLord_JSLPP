@@ -17,6 +17,9 @@ import {
   displayConfirmModal,
   deleteConfirmModal,
   displayMobileSidebar,
+  taskPriority,
+  updateLogos,
+  mobileLogo,
 } from "./modals.js";
 import {
   getNewTask,
@@ -37,11 +40,9 @@ const deleteConfirmBtn = document.getElementById("confirm-btn");
 const deleteCancelBtn = document.getElementById("cancel-btn");
 const hideSidebarBtn = document.getElementById("board-hide-btn");
 const showSidebarBtn = document.getElementById("board-show-btn");
-const modeToggleBtn = document.getElementById("mode-toggle");
+export const modeToggleBtn = document.getElementById("mode-toggle");
 
 const sidebarDiv = document.getElementById("side-bar-div");
-const kanbanLogo = document.getElementById("logo");
-const mobileLogo = document.getElementById("logo-mobile");
 
 // Opens the Add New Task modal
 newTaskBtn.addEventListener("click", function () {
@@ -110,6 +111,7 @@ editTaskBtn.addEventListener("click", function () {
   selectedTask.title = taskTitle.value;
   selectedTask.description = taskDescription.value;
   selectedTask.status = taskStatus.value;
+  selectedTask.priority = taskPriority.value;
 
   editTask(selectedTask);
   renderTasks();
@@ -133,12 +135,14 @@ modeToggleBtn.addEventListener("click", function () {
   const html = document.documentElement;
   html.classList.toggle("dark-mode");
 
-  if (html.classList.contains("dark-mode")) {
-    kanbanLogo.setAttribute("src", "./assets/logo-dark.svg");
-    mobileLogo.setAttribute("src", "./assets/favicon-clear.svg");
+  const isDarkMode = html.classList.contains("dark-mode");
+
+  updateLogos(isDarkMode);
+
+  if (isDarkMode) {
+    localStorage.setItem("darkMode", "enabled");
   } else {
-    kanbanLogo.setAttribute("src", "./assets/logo-light.svg");
-    mobileLogo.setAttribute("src", "./assets/favicon.svg");
+    localStorage.setItem("darkMode", "disabled");
   }
 });
 
