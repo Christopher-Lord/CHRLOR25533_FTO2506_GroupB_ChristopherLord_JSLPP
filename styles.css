@@ -759,11 +759,11 @@ h2 {
     
     position: fixed; /* Overlay on top of page */
     height: auto;
-    min-width: 21.25rem;
+    width: 21.25rem;
 
     z-index: 1;
     margin-top: 4.125rem;
-    margin-left: 16px;
+    margin-left: 2rem;
     
     border-radius: .5rem;
     border-right: none;
@@ -915,5 +915,27 @@ h2 {
   .confirm-btn-container {
     flex-direction: column;
     gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+    .side-bar.show-sidebar {
+    width: 90%;
+
+    margin-left: 1.25rem;
+  }
+
+  .mode-switch-container {
+    width: 65%;
+  }
+
+  .board-btn{
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 344px) {
+  .side-bar.show-sidebar{
+    margin-left: 1rem;
   }
 }
