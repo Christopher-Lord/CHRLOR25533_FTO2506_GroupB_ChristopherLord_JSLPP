@@ -7,6 +7,7 @@
 export const taskTitle = document.getElementById("task-title");
 export const taskDescription = document.getElementById("task-description");
 export const taskStatus = document.getElementById("task-status");
+export const taskPriority = document.getElementById("task-priority");
 
 // Modal Variables
 const taskModal = document.getElementById("task-modal-container");
@@ -24,6 +25,10 @@ export const descriptionErrorMsg = document.getElementById(
   "description-error-msg",
 );
 
+// Logo variables
+export const kanbanLogo = document.getElementById("logo");
+export const mobileLogo = document.getElementById("logo-mobile");
+
 // Empty Variable for storing the currently selected task
 export let selectedTask;
 
@@ -38,6 +43,7 @@ export function displayTaskModal(task) {
   taskTitle.textContent = task.title;
   taskDescription.textContent = task.description;
   taskStatus.value = task.status;
+  taskPriority.value = task.priority;
 
   // Changes the modal style so it displays
   taskModal.classList.add("visible");
@@ -51,6 +57,7 @@ export function closeModals() {
   newTaskModal.classList.remove("visible");
   mobileSidebar.classList.remove("show-sidebar");
   mobileSidebarBackdrop.classList.remove("show-sidebar");
+  deleteConfirmModal.classList.remove("visible");
 
   newTaskForm.reset();
 
@@ -71,4 +78,14 @@ export function displayConfirmModal() {
 export function displayMobileSidebar() {
   mobileSidebar.classList.add("show-sidebar");
   mobileSidebarBackdrop.classList.add("show-sidebar");
+}
+
+export function updateLogos(isDarkMode) {
+  if (isDarkMode) {
+    kanbanLogo.setAttribute("src", "./assets/logo-dark.svg");
+    mobileLogo.setAttribute("src", "./assets/favicon-clear.svg");
+  } else {
+    kanbanLogo.setAttribute("src", "./assets/logo-light.svg");
+    mobileLogo.setAttribute("src", "./assets/favicon.svg");
+  }
 }
