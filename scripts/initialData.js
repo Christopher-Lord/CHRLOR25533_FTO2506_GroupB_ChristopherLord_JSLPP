@@ -1,13 +1,13 @@
 const API_URL = "https://jsl-kanban-api.vercel.app/";
 
+// Empty initial tasks array
+let initialTasks;
+
 /**
  * Fetches initial task data from a given API and populates initialTasks array
  * @returns Populated initialTasks Array
  */
 export async function fetchInitialData() {
-  // Empty initial tasks array
-  let initialTasks;
-
   // Runs if data has already been fetched
   if (initialTasks) {
     return initialTasks;
