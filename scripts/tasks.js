@@ -6,7 +6,7 @@
  */
 
 // Importing necessary functions and variables from other modules
-import { displayTaskModal } from "./modals.js";
+import { displayTaskModal, taskTitle } from "./modals.js";
 import { allTasks } from "./initialData.js";
 import { retrieveTasksFromStorage, saveTasksToStorage } from "./storage.js";
 
@@ -14,6 +14,7 @@ import { retrieveTasksFromStorage, saveTasksToStorage } from "./storage.js";
 export const titleInput = document.getElementById("add-task-title");
 export const descriptionInput = document.getElementById("add-task-description");
 export const statusInput = document.getElementById("add-task-status");
+export const priorityInput = document.getElementById("add-task-priority");
 
 const loadingMsg = document.getElementById("loading-container");
 
@@ -83,6 +84,7 @@ export function getNewTask() {
   newTask.title = titleInput.value;
   newTask.description = descriptionInput.value;
   newTask.status = statusInput.value;
+  newTask.priority = priorityInput.value;
 
   return newTask;
 }
@@ -105,7 +107,12 @@ export function addTask(task) {
 export function createTaskElement(task) {
   const newDiv = document.createElement("div");
 
-  newDiv.textContent = task.title;
+  if (!task.priority) {
+    newDiv.textContent = task.title;
+  } else {
+    newDiv.innerHTML = `${task.title}<span class="priority-icon">${showPriorityIndicator(task.priority)}</span>`;
+  }
+
   newDiv.dataset.taskId = task.id;
   newDiv.classList.add("task-div");
 
@@ -154,6 +161,25 @@ export function editTask(task) {
   updateTaskCounts();
 }
 
+export function showPriorityIndicator(priority) {
+  switch (priority) {
+    case "low":
+      return "🟢";
+    case "medium":
+      return "🟠";
+    case "high":
+      return "🔴";
+  }
+}
+
+export function sortTasksByPriority(tasks) {
+  const highTasks = tasks.filter((task) => task.priority === "high");
+  const medTasks = tasks.filter((task) => task.priority === "medium");
+  const lowTasks = tasks.filter((task) => task.priority === "low");
+
+  return [...highTasks, ...medTasks, ...lowTasks];
+}
+
 /**
  * Sets the task loading message to visible
  */
@@ -172,9 +198,17 @@ export async function renderTasks() {
     const tasks = await retrieveTasksFromStorage();
     loadingMsg.classList.remove("visible");
 
-    clearExistingTasks();
-    tasks.forEach(assignTasks);
+    tasks.forEach((task) => {
+      if (!task.priority) {
+        task.priority = "low"
+      }
+    })
 
+    const sortedTasks = sortTasksByPriority(tasks);
+
+    clearExistingTasks();
+
+    sortedTasks.forEach(assignTasks);  
     updateTaskCounts();
   } catch (error) {
     const loadingMsgText = document.getElementById("loading-msg");
