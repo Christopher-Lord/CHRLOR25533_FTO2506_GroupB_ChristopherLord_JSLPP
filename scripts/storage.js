@@ -4,6 +4,8 @@
  */
 
 import { allTasks, fetchInitialData } from "./initialData.js";
+import { updateLogos } from "./modals.js";
+import { modeToggleBtn } from "./events.js";
 
 /**
  * Saves array to local storage
@@ -22,7 +24,7 @@ export async function retrieveTasksFromStorage() {
 
   // Runs if no tasks are saved in local storage, fetches data from API
   if (!savedTasks) {
-    const initialData = await fetchInitialData()
+    const initialData = await fetchInitialData();
     initialData.forEach((task) => {
       allTasks.push(task);
     });
@@ -42,4 +44,16 @@ export async function retrieveTasksFromStorage() {
   }
 
   return allTasks;
+}
+
+export function retrieveTheme() {
+  const savedTheme = localStorage.getItem("darkMode");
+
+  if (savedTheme === "enabled") {
+    document.documentElement.classList.add("dark-mode");
+
+    updateLogos(true);
+
+    modeToggleBtn.checked = true;
+  }
 }
