@@ -6,7 +6,7 @@
  */
 
 // Importing necessary functions and variables from other modules
-import { displayTaskModal, taskTitle } from "./modals.js";
+import { displayTaskModal } from "./modals.js";
 import { allTasks } from "./initialData.js";
 import { retrieveTasksFromStorage, saveTasksToStorage } from "./storage.js";
 
@@ -107,11 +107,8 @@ export function addTask(task) {
 export function createTaskElement(task) {
   const newDiv = document.createElement("div");
 
-  if (!task.priority) {
-    newDiv.textContent = task.title;
-  } else {
-    newDiv.innerHTML = `${task.title}<span class="priority-icon">${showPriorityIndicator(task.priority)}</span>`;
-  }
+  // Adding the task title and priority indicator to the div
+  newDiv.innerHTML = `${task.title}<span class="priority-icon">${showPriorityIndicator(task.priority)}</span>`;
 
   newDiv.dataset.taskId = task.id;
   newDiv.classList.add("task-div");
@@ -161,6 +158,11 @@ export function editTask(task) {
   updateTaskCounts();
 }
 
+/**
+ * Finds the tasks priority level and returns the corresponding indicator
+ * @param {String} priority - Value of "priority" task object key
+ * @returns Corresponding priority indicator
+ */
 export function showPriorityIndicator(priority) {
   switch (priority) {
     case "low":
@@ -172,6 +174,11 @@ export function showPriorityIndicator(priority) {
   }
 }
 
+/**
+ * Filters out tasks into their own arrays based on priority, then returns an array of all tasks in correct order
+ * @param {Object} tasks - Task object
+ * @returns Array of tasks in order from highest to lowest priority
+ */
 export function sortTasksByPriority(tasks) {
   const highTasks = tasks.filter((task) => task.priority === "high");
   const medTasks = tasks.filter((task) => task.priority === "medium");
@@ -198,17 +205,19 @@ export async function renderTasks() {
     const tasks = await retrieveTasksFromStorage();
     loadingMsg.classList.remove("visible");
 
+    // If tasks don't have a priority value, gives them default value 'low'
     tasks.forEach((task) => {
       if (!task.priority) {
-        task.priority = "low"
+        task.priority = "low";
       }
-    })
+    });
 
+    // Sorting the tasks based on priority
     const sortedTasks = sortTasksByPriority(tasks);
 
     clearExistingTasks();
 
-    sortedTasks.forEach(assignTasks);  
+    sortedTasks.forEach(assignTasks);
     updateTaskCounts();
   } catch (error) {
     const loadingMsgText = document.getElementById("loading-msg");

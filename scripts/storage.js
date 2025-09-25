@@ -35,6 +35,8 @@ export async function retrieveTasksFromStorage() {
   // Runs if there are tasks stored
   try {
     let parsedTasks = JSON.parse(savedTasks);
+
+    // Empties allTasks array and repopulates it with parsed data
     allTasks.length = 0;
     parsedTasks.forEach((task) => {
       allTasks.push(task);
@@ -46,6 +48,9 @@ export async function retrieveTasksFromStorage() {
   return allTasks;
 }
 
+/**
+ * Checks local storage for dark mode status. If enabled, makes sure all elements are correct 
+ */
 export function retrieveTheme() {
   const savedTheme = localStorage.getItem("darkMode");
 
@@ -54,6 +59,7 @@ export function retrieveTheme() {
 
     updateLogos(true);
 
+    // Making sure theme toggle is in the correct position
     modeToggleBtn.checked = true;
   }
 }

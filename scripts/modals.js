@@ -17,7 +17,7 @@ export const deleteConfirmModal = document.getElementById(
   "delete-confirm-container",
 );
 const mobileSidebar = document.getElementById("side-bar-div");
-const mobileSidebarBackdrop = document.getElementById("side-bar-backdrop");
+export const mobileSidebarBackdrop = document.getElementById("side-bar-backdrop");
 
 // Error Messages
 export const titleErrorMsg = document.getElementById("title-error-msg");
@@ -80,6 +80,10 @@ export function displayMobileSidebar() {
   mobileSidebarBackdrop.classList.add("show-sidebar");
 }
 
+/**
+ * Checks if dark mode is enabled and switches the logos to match the theme
+ * @param {boolean} isDarkMode - True or False value 
+ */
 export function updateLogos(isDarkMode) {
   if (isDarkMode) {
     kanbanLogo.setAttribute("src", "./assets/logo-dark.svg");

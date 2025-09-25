@@ -7,7 +7,7 @@ import "./events.js";
 import { retrieveTheme } from "./storage.js";
 import { renderTasks } from "./tasks.js";
 
-// Only runs renderTasks once the DOM is loaded
+// Once DOM is loaded, checks the theme and renders tasks
 document.addEventListener("DOMContentLoaded", function () {
   retrieveTheme();
   renderTasks();
