@@ -172,6 +172,10 @@ select {
   background-color: #fff;
 }
 
+select.task-status-input {
+  margin-bottom: 1.5rem;
+}
+
 #add-task-form select {
   margin-bottom: 1.5rem;
 }
@@ -668,6 +672,7 @@ header {
   margin: 15% 20%;
 
   background: var(--primary-color);
+  color: var(--primary-font-color);
   padding: 0.5rem 2rem;
   border-radius: 1.5rem;
 
@@ -705,6 +710,7 @@ header {
 .tasks-container {
   display: flex;
   flex-direction: column;
+
 }
 
 .task-div {
@@ -721,6 +727,11 @@ header {
   margin-bottom: 20px;
   font-size: 0.9375rem;
   font-weight: bold;
+}
+
+.priority-icon {
+  margin: 0 1rem 0 auto;
+  padding-left: .25rem;
 }
 
 /* ===============
