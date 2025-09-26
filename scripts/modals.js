@@ -37,11 +37,11 @@ export let selectedTask;
  * @param {object} task Each task object in the array
  */
 export function displayTaskModal(task) {
-  selectedTask = task;
+  selectedTask = {...task};
 
   // Fetches each input field and adds the correct task info to each
-  taskTitle.textContent = task.title;
-  taskDescription.textContent = task.description;
+  taskTitle.value = task.title;
+  taskDescription.value = task.description;
   taskStatus.value = task.status;
   taskPriority.value = task.priority;
 
