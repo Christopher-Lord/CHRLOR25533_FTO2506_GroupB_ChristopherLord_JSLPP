@@ -134,15 +134,19 @@ export function assignTasks(task) {
 }
 
 /**
- * Finds the array index of the currently selected task and removes that task
+ * Finds the task ID of the currently selected task and removes that task
  * @param {object} task Currently selected task
  */
 export function deleteTask(task) {
-  const indexToRemove = allTasks.indexOf(task);
+  const indexToRemove = allTasks.findIndex((t) => t.id === task.id);
 
-  allTasks.splice(indexToRemove, 1);
-  saveTasksToStorage();
-  updateTaskCounts();
+  if (indexToRemove !== -1) {
+    allTasks.splice(indexToRemove, 1);
+    saveTasksToStorage();
+    updateTaskCounts();
+  } else {
+    console.error("Task to delete not found");
+  }
 }
 
 /**
@@ -150,12 +154,16 @@ export function deleteTask(task) {
  * @param {Object} task - Selected task object to edit
  */
 export function editTask(task) {
-  const indexToEdit = allTasks.indexOf(task);
+  const indexToEdit = allTasks.findIndex((t) => t.id === task.id);
 
-  allTasks.splice(indexToEdit, 1, task);
-  assignTasks(task);
-  saveTasksToStorage();
-  updateTaskCounts();
+  if (indexToEdit !== -1) {
+    allTasks.splice(indexToEdit, 1, task);
+    assignTasks(task);
+    saveTasksToStorage();
+    updateTaskCounts();
+  } else {
+    console.error("Task to edit not found");
+  }
 }
 
 /**
