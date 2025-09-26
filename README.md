@@ -1,8 +1,78 @@
 # JSL Portfolio Piece: Kanban App Deployment & Features Implementation
 
-## Overview
+## Project Description
 
-This project involves **deploying a Kanban app to Netlify**, ensuring the app's functionality and persistence through local storage, and implementing dynamic features such as task editing, deletion, sidebar interaction, and a theme toggle. The goal is to deliver a fully functional, deployable application that is responsive across devices and maintains data consistency. Students will also focus on **clean, modular code** that is well-documented for future development.
+This project involves **deploying a Kanban app to Netlify**, ensuring the app's functionality and persistence through local storage, and implements dynamic features such as task editing, deletion, sidebar interaction, and a theme toggle. It is a fully functional, deployed application that is responsive across devices and maintains data consistency.
+
+## Setup Instructions
+
+1. Clone or download this repo, **or** visit the provided Netlify link below
+2. If downloaded, extract files and open index.html in VSCode, opening it directly in your browser will not work
+3. Then use the Live Server extension to view the web page and all its features
+4. Tasks will show up dynamically and you can click them to view their information
+5. Add, edit or delete tasks however you please
+
+#### Netlify Link
+
+[Kanban Board Netlify Link](https://chris-lord-kanban-board.netlify.app/)
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Netlify
+
+## Features
+
+- Page is deployed with Netlify, so can be accessed whenever you feel like it
+- Dynamic task display, fetched from an API and stored in local storage
+- Clickable tasks
+- When clicked, tasks will display a modal with all relevant task information
+- Task information is editable, and be saved with the **Save Changes** button
+- **+ Add New Task** button can be clicked to open a modal where you can input information for a new task
+- Can click **Create Task** to save the task and it will be displayed on the webpage
+- Add New Task modal has form validation, so you won't be able to submit with blank inputs
+- Initial tasks and any added, edited or deleted tasks will be save to local storage, so will persist across refreshes
+- Tasks can be deleted with **Delete Task**, with a confirmation message to make sure you really mean it
+- Web page theme can be toggled between light and dark mode
+- Preferred theme is stored in local storage, so will persist across reloads
+- Desktop sidebar can be hidden and shown whenever the need may arise
+- On mobile, the app logo can be clicked to open the mobile sidebar menu
+- Tasks display a given priority (default: "low")
+- Tasks are ordered in their columns from highest to lowest priority
+
+## Usage Examples
+
+- Dynamically displaying a list of tasks
+- Adding new tasks to the task board
+- Keeping track of tasks and viewing their information when clicked
+- Editing or deleting selected tasks to keep them up to date
+- Noting tasks by priority in order to know the most important ones
+
+  ![Example 01](./images/JSPP-example-01.jpg) ![Example 02](./images/JSPP-example-02.jpg)
+
+  ![Example 03](./images/JSPP-example-03.jpg) ![Example 04](./images/JSPP-example-04.jpg)
+
+## Usage instructions
+
+- Tasks will show up dynamically when fetched from an API
+- Once loaded, you can click a task to view its information
+- You can edit the task information through the pop-up and click **Save Changes** to commit the changes
+- All pop-ups can be closed by clicking the red 'X' in the top right corner
+- Click the **+ Add New Task** button to enter new task data and then create the task to save it to the task board
+- If you are no longer a fan of your new task, or any of the other tasks, pressing **Delete Task** in the task pop-up will remove it
+- To make sure you really want to delete something, a confirmation notice will pop up to check if you are sure
+- In the sidebar you can use the day/night toggle button to switch between light and dark mode
+- From the sidebar you can also hide the sidebar entirely, and show it again with the "👀" button that appears
+- On mobile, click the app logo to show the mobile sidebar
+- In the task editing pop-up you can change a tasks priority
+
+## Presentation Link
+
+[JSLPP Presentation Link](https://drive.google.com/drive/folders/19TUtQUPY8AkmjHjNIQN7fiKmJTOjCd_c?usp=sharing)
+
+---
 
 ## WHAT to Submit
 
